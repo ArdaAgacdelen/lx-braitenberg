@@ -1,8 +1,14 @@
 import cv2
 import numpy as np
 
-lower_hsv = np.array([171, 140, 100])
-upper_hsv = np.array([179, 200, 255])
+# simulator images
+lower_hsv = np.array([20, 100, 100])
+upper_hsv = np.array([30, 255, 255])
+
+
+# real images
+# lower_hsv = np.array([12, 89, 76])
+# upper_hsv = np.array([31, 255, 255])
 
 
 def preprocess(image_rgb: np.ndarray) -> np.ndarray:

@@ -26,11 +26,10 @@ def rescale(a: float, L: float, U: float):
     return (a - L) / (U - L)
 
 
-# TODO edit this Config class ! Play with different gain and const values
 @dataclass
 class BraitenbergAgentConfig:
-    gain: float = 0.9
-    const: float = 0.0
+    gain: float = 0.5
+    const: float = 0.1
 
 
 class BraitenbergAgent:
@@ -46,8 +45,8 @@ class BraitenbergAgent:
 
     def __init__(self):
         self.rgb = None
-        self.l_max = -math.inf
-        self.r_max = -math.inf
+        self.l_max = -500000.0
+        self.r_max = -500000.0
         self.l_min = math.inf
         self.r_min = math.inf
         self.left = None
@@ -78,12 +77,16 @@ class BraitenbergAgent:
             self.left = get_motor_left_matrix(shape)
             self.right = get_motor_right_matrix(shape)
 
+        from matplotlib import pyplot as plt
+        plt.imshow(self.rgb, interpolation='nearest')
+        plt.show()
         # let's take only the intensity of RGB
         P = preprocess(self.rgb)
         # now we just compute the activation of our sensors
         l = float(np.sum(P * self.left))
         r = float(np.sum(P * self.right))
-
+        print(f"l = {l}")
+        print(f"r = {r}")
         # These are big numbers -- we want to normalize them.
         # We normalize them using the history
 
@@ -93,10 +96,16 @@ class BraitenbergAgent:
         self.l_min = min(l, self.l_min)
         self.r_min = min(r, self.r_min)
 
+        print(f"l_max = {self.l_max}")
+        print(f"r_max = {self.r_max}")
+        print(f"l_min = {self.l_min}")
+        print(f"r_min = {self.r_min}")
+
         # now rescale from 0 to 1
         ls = rescale(l, self.l_min, self.l_max)
+        print(f"ls = {ls}")
         rs = rescale(r, self.r_min, self.r_max)
-
+        print(f"rs = {rs}")
         gain = self.config.gain
         const = self.config.const
         pwm_left = const + ls * gain
@@ -112,6 +121,7 @@ class BraitenbergAgent:
         except DataDecodingError as e:
             self.logerr(f"Failed to decode an incoming message: {e.message}")
             return
+
         if self.rgb is None:
             print("received first observations")
 
