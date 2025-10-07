@@ -7,6 +7,7 @@ import asyncio
 from dataclasses import dataclass
 from typing import Optional, Tuple
 import numpy as np
+from PIL import Image
 
 from dtps import context, ContextConfig, DTPSContext
 from dtps_http import RawData
@@ -25,6 +26,96 @@ def rescale(a: float, L: float, U: float):
         return 0.0
     return (a - L) / (U - L)
 
+def rgb_from_jpg(filename: str) -> np.ndarray:
+    """
+    Load a JPG image and convert it to a numpy array in RGB format.
+
+    Args:
+        filename (str): Path to the JPG file.
+
+    Returns:
+        np.ndarray: H x W x 3 array with dtype=np.uint8
+    """
+    with Image.open(filename) as img:
+        img = img.convert("RGB")  # Ensure 3 channels
+        arr = np.array(img, dtype=np.uint8)
+    return arr
+
+def posneg(value, max_value=None, skim=0, nan_color=(0.5, 0.5, 0.5), zero_color=(1.0, 1.0, 1.0)):
+    """
+    Converts a 2D float value to a RGB representation, where
+    red is positive, blue is negative, white is zero.
+
+    :param value: The field to represent.
+     :type value: array[HxW]
+
+    :param max_value:  Maximum of absolute value (if None, detect).
+     :type max_value:  float,>0
+
+    :param skim:       Fraction to skim (in percent).
+     :type skim:       float,>0,<100
+
+    :param nan_color:  Color to give for regions of NaN and Inf.
+     :type nan_color:  color
+
+    :return: posneg: A RGB image.
+     :rtype: array[HxWx3](uint8)
+
+    """
+
+    # TODO: put this in reprep
+    value = value.copy()
+    if value.ndim > 2:
+        value = value.squeeze()
+
+    if value.dtype == np.dtype("uint8"):
+        value = value.astype("float32")
+
+    if len(value.shape) != 2:
+        raise Exception("I expected a H x W image, got shape %s." % str(value.shape))
+
+    isfinite = np.isfinite(value)
+    isnan = np.logical_not(isfinite)
+    # set nan to 0
+    value[isnan] = 0
+
+    if max_value is None:
+        abs_value = abs(value)
+        # if skim != 0:
+        #     abs_value = skim_top(abs_value, skim)
+
+        max_value = np.max(abs_value)
+
+        if max_value == 0:
+            result = np.zeros((value.shape[0], value.shape[1], 3), dtype="uint8")
+            for i in range(3):
+                result[:, :, i] = zero_color[i] * 255
+            return result
+
+    assert np.isfinite(max_value)
+
+    positive = np.minimum(np.maximum(value, 0), max_value) / max_value
+    negative = np.maximum(np.minimum(value, 0), -max_value) / -max_value
+    positive_part = (positive * 255).astype("uint8")
+    negative_part = (negative * 255).astype("uint8")
+
+    result = np.zeros((value.shape[0], value.shape[1], 3), dtype="uint8")
+
+    anysign = np.maximum(positive_part, negative_part)
+    R = 255 - negative_part[:, :]
+    G = 255 - anysign
+    B = 255 - positive_part[:, :]
+
+    # remember the nans
+    R[isnan] = nan_color[0] * 255
+    G[isnan] = nan_color[1] * 255
+    B[isnan] = nan_color[2] * 255
+
+    result[:, :, 0] = R
+    result[:, :, 1] = G
+    result[:, :, 2] = B
+
+    return result
 
 @dataclass
 class BraitenbergAgentConfig:
