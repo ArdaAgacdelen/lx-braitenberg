@@ -1,7 +1,7 @@
 import sys
 
 import cv2
-import duckietown_code_utils as dcu
+from braitenberg_agent.agent import rgb_from_jpg
 import numpy as np
 
 
@@ -13,7 +13,8 @@ def main(fname: str = None):
     # Create a window
     cv2.namedWindow("image")
 
-    frame0 = dcu.image_cv_from_jpg_fn(fname or sys.argv[1])
+    rgb = rgb_from_jpg(fname or sys.argv[1])
+    frame0 = rgb[..., ::-1]
     lastL = np.array([171, 140, 0])
     lastU = np.array([179, 200, 255])
 

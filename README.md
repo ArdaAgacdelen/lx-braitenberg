@@ -1,38 +1,33 @@
-<p align="center">
-<img src="./assets/images/dtlogo.png" alt="Duckietown Logo" width="50%">
-</p>
-
-# **Learning Experience (LX): <LX_TITLE_HERE>**
+# **Learning Experience (LX): Braitenberg Vehicles**
 
 # About these activities
 
-<DESCRIPTION_HERE>
+In this learning experience, you will learn  [Braitenberg vehicles](https://en.wikipedia.org/wiki/Braitenberg_vehicle), one of the simplest possible
+ways we could conceive of doing sensorimotor control. 
 
-In this learning experience, you will ... **TODO: Describe the LX activities and outcome here**
-
-This learning experience is provided by the Duckietown team and can be run on Duckiebots. Visit us at the 
+The bulk of the matrerial for this was built by [Andrea Censi](https://censi.science/). Visit the 
 [Duckietown Website](https://www.duckietown.com) for more learning materials, documentation, and demos.
 
-For guided setup instructions, lecture content, and more related to this LX, see **TODO: Add course link here**.
-
-## Grading challenge
-
-**TODO: Add optional challenge link or remove the `Grading challenge` section**
 
 # Instructions
 
-**TODO: Update Step 1. to match your learner setup**
-
 **NOTE:** All commands below are intended to be executed from the root directory of this exercise (i.e., the directory containing this README).
 
+The recommended way to use this repository is to make a fork and then clone that fork. This can be done through
+the github web interface. However, you are also free to simply clone this repository and get started. 
+
+This exercise can be run on a real Duckiebot or on a virtual Duckiebot in the Duckiematrix. 
 
 ## 1. Make sure your exercise is up-to-date
 
-Update your exercise definition and instructions,
+In case your instructor has updated something in this repo, you should make sure everything is up to date (this assumes
+that you created a fork):
 
-    git pull upstream <your upstream branch>
+    git remote add upstream git@github.com:duckietown/lx-ros-basics
+    git pull upstream <branch>
 
-**NOTE:** Example instructions to fork a repository and configure to pull from upstream can be found in the [duckietown-lx repository README](https://github.com/duckietown/duckietown-lx/blob/mooc2022/README.md).
+**NOTE:** Example instructions to fork a repository and configure to pull from upstream can be found in the 
+[duckietown-lx repository README](https://github.com/duckietown/duckietown-lx/blob/mooc2022/README.md).
 
 
 ## 2. Make sure your system is up-to-date
@@ -43,7 +38,8 @@ Update your exercise definition and instructions,
 
 - 💻 Update your laptop/desktop: `dts desktop update`
 
-- 🚙 Update your Duckiebot: `dts duckiebot update ROBOTNAME` (where `ROBOTNAME` is the name of your Duckiebot chosen during the initialization procedure.)
+- 🚙 Update your Duckiebot: `dts duckiebot update ROBOTNAME`
+(where `ROBOTNAME` is the name of your Duckiebot - real or virtual.)
 
 
 ## 3. Work on the exercise
@@ -71,18 +67,7 @@ Inside the code editor, use the navigator sidebar on the left-hand side to navig
 Follow the instructions on the notebook and work through the notebooks in sequence.
 
 
-### Building your code
-
-You can build your code with 
-
-```
-dts code build -R ROBOT_NAME
-```
-
-This will build a docker image with your code compiled inside - you should your ROS node get built during the process. 
-
-
-### Testing with Duckiematrix
+### Testing with the Duckiematrix
 
 In order to test your code in the Duckiematrix you will need a virtual robot. You can create one with the command:
 
@@ -112,32 +97,30 @@ Now that your virtual robot is ready you can start the Duckiematrix. From this e
 dts code start_matrix
 ```
 
-You should see the Unity-based Duckiematrix simulator start up. 
+You should see the Unity-based Duckiematrix simulator start up. The startup screen will look like:
+
+![duckiematrix_start](assets/duckiematrix_start.png)
+
+From here you can click anywhere on the window and click [ENTER] to make it become active. From here you can move the duckie towards the Duckiebot with the 'w', 'a', 's', and 'd' keys or you can move the camera angle to view the Duckiebot with the mouse. Alternately, you can change to an overhead view be pressing 'v' which will give you a view that looks like this:
+
+![duckiematrix_overhead](assets/duckiematrix_overhead.png)
 
 
-### 💻 Testing 
+### Build the Code
 
-
-To test your code in the duckiematrix you can do:
-
-```
-dts code workbench -m -R [VIRTUAL_ROBOT_NAME]
-```
-
-and to test your code on your real Duckiebot you can do:
-
-```
-dts code workbench -R [ROBOT_NAME]
-```
-
-
-In another terminal, you can launch the `noVNC` viewer for this exercise which can be useful to send commands to the robot and view the odometry that you calculating in the RViZ window. 
+You can build the code with 
 
 ```
-dts code vnc -R [ROBOT_NAME]
+dts code build -R ROBOTNAME
 ```
 
-where `[ROBOT_NAME]` could be the real or the virtual robot (use whichever you ran the `dts code workbench` and `dts code build` command with).
+where ROBOTNAME can be either a real or virtual robot. 
 
+###  Testing the code
 
-Now you can proceed to the [first notebook](ADD_LINK_TO_NOTEBOOK).
+Then you may run your code with 
+
+    $ dts code workbench -R ROBOTNAME [-m]
+
+where ROBOTNAME can be either a real or virtual robot, but if it is a virtual robot you should include the `-m` option
+to indicate that you want to test it in the Duckiematrix. 

@@ -7,6 +7,7 @@ import asyncio
 from dataclasses import dataclass
 from typing import Optional, Tuple
 import numpy as np
+from PIL import Image
 
 from dtps import context, ContextConfig, DTPSContext
 from dtps_http import RawData
@@ -24,6 +25,21 @@ def rescale(a: float, L: float, U: float):
     if np.allclose(L, U):
         return 0.0
     return (a - L) / (U - L)
+
+def rgb_from_jpg(filename: str) -> np.ndarray:
+    """
+    Load a JPG image and convert it to a numpy array in RGB format.
+
+    Args:
+        filename (str): Path to the JPG file.
+
+    Returns:
+        np.ndarray: H x W x 3 array with dtype=np.uint8
+    """
+    with Image.open(filename) as img:
+        img = img.convert("RGB")  # Ensure 3 channels
+        arr = np.array(img, dtype=np.uint8)
+    return arr
 
 
 @dataclass
