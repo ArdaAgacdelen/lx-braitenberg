@@ -1,3 +1,7 @@
+<p align="center">
+<img src="./assets/images/dtlogo.png" alt="Duckietown Logo" width="50%">
+</p>
+
 # **Learning Experience (LX): Braitenberg Vehicles**
 
 # About these activities
@@ -5,27 +9,28 @@
 In this learning experience, you will learn  [Braitenberg vehicles](https://en.wikipedia.org/wiki/Braitenberg_vehicle), one of the simplest possible
 ways we could conceive of doing sensorimotor control. 
 
-# Instructions
-
 **NOTE:** All commands below are intended to be executed from the root directory of this exercise (i.e., the directory containing this README).
+
+# 0. Clone this repository
 
 The recommended way to use this repository is to make a fork and then clone that fork. 
 
 This can be done through the GitHub web interface. However, you are also free to simply clone this repository and get started. 
 
+**NOTE:** Example instructions to fork a repository and configure to pull from upstream can be found in the 
+[duckietown-lx repository README](https://github.com/duckietown/duckietown-lx/blob/mooc2022/README.md).
+
 This exercise can be run on a [real Duckiebot](https://get.duckietown.com/products/duckiebot-db21?variant=41543707099311) or on a virtual Duckiebot in [the Duckiematrix](https://docs.duckietown.com/ente/duckietown-manual/50-duckiematrix/introduction-to-the-duckiematrix-virtual-environment.html). 
 
-## 1. Make sure your exercise is up-to-date
+## 1. Make sure your LX is up-to-date
 
 In case your instructor has updated something in this repo, you should make sure everything is up to date (this assumes
 that you created a fork):
 
-    git remote add upstream git@github.com:duckietown/lx-ros-basics
+    git remote add upstream git@github.com:duckietown/lx-braitenberg
     git pull upstream <branch>
 
-**NOTE:** Example instructions to fork a repository and configure to pull from upstream can be found in the 
-[duckietown-lx repository README](https://github.com/duckietown/duckietown-lx/blob/mooc2022/README.md).
-
+The most up-to-date branch, unless otherwise specified, is always `ente`.    
 
 ## 2. Make sure your system is up-to-date
 
@@ -38,12 +43,17 @@ that you created a fork):
 - 🚙 Update your Duckiebot: `dts duckiebot update ROBOTNAME`
 (where `ROBOTNAME` is the name of your Duckiebot - real or virtual.)
 
-
 ## 3. Work on the exercise
 
 ### Launch the code editor
 
-Open the code editor by running the following command,
+#### SSL certificate
+
+If you have not done so already, set up your local SSL certificate needed to run the learning experience editor with:
+
+    dts setup mkcert
+
+Then, open the code editor by running the following command,
 
 ```
 dts code editor
@@ -53,6 +63,7 @@ Wait for a URL to appear on the terminal, then click on it or copy-paste it in t
 of your browser to access the code editor. The first thing you will see in the code editor is
 this same document. You can continue from there.
 
+Note: if your browser complains about the URL "not being safe", note how it starts with "127.0.0.1". That is computer lingo for "home", and it is safe. 
 
 ### Walkthrough of notebooks
 
