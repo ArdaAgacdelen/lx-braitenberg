@@ -5,10 +5,6 @@
 In this learning experience, you will learn  [Braitenberg vehicles](https://en.wikipedia.org/wiki/Braitenberg_vehicle), one of the simplest possible
 ways we could conceive of doing sensorimotor control. 
 
-The bulk of the material for this was built by [Andrea Censi](https://censi.science/). Visit the 
-[Duckietown Website](https://www.duckietown.com) for more learning materials, documentation, and demos.
-
-
 # Instructions
 
 **NOTE:** All commands below are intended to be executed from the root directory of this exercise (i.e., the directory containing this README).
@@ -128,4 +124,9 @@ Then you may run your code with
     $ dts code workbench -R ROBOTNAME [-m]
 
 where ROBOTNAME can be either a real or virtual robot, but if it is a virtual robot, you should include the `-m` option
-to indicate that you want to test it in the Duckiematrix. 
+to indicate that you want to test it in the Duckiematrix.
+
+## Credits and more
+
+The bulk of the material for this was built by [Andrea Censi](https://censi.science/). Visit the 
+[Duckietown Website](https://www.duckietown.com) for more learning materials, documentation, and demos.
