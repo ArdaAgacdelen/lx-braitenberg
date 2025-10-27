@@ -34,6 +34,12 @@ The most up-to-date branch, unless otherwise specified, is always `ente`.
 
 ## 2. Make sure your system is up-to-date
 
+- 💻 This is an `ente` learning experience (note the branch name). Make sure your Duckietown Shell is set to an `ente` profile (and not, e.g., a `daffy` one). You can check your current distribution with
+
+    dts profile list
+
+  To switch to an ente profile, follow the [Duckietown Manual DTS installation instructions](https://docs.duckietown.com/ente/duckietown-manual/10-setup/02-software/duckietown-shell-dts-installation.html#dt-account-switch-profile).
+
 - 💻 Always make sure your Duckietown Shell is updated to the latest version. See [installation instructions](https://docs.duckietown.com/ente/duckietown-manual/10-setup/02-software/duckietown-shell-dts-installation.html)
 
 - 💻 Update the shell commands: `dts update`
@@ -51,6 +57,7 @@ The most up-to-date branch, unless otherwise specified, is always `ente`.
 
 If you have not done so already, set up your local SSL certificate needed to run the learning experience editor with:
 
+    sudo apt install libnss3-tools
     dts setup mkcert
 
 Then, open the code editor by running the following command,
