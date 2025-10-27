@@ -87,7 +87,7 @@ Follow the instructions in the notebook and work through it in sequence.
 To test your code in the Duckiematrix you will need a virtual robot. You can create one with the command:
 
 ```
-dts duckiebot virtual create [VBOT]
+dts duckiebot virtual create --type duckiebot --configuration DB21J [VBOT]
 ```
 
 where `[VBOT]` is the hostname. It can be anything you like, with [some constraints](https://docs.duckietown.com/ente/duckietown-manual/10-setup/03-duckiebot/flashing-sd-card-duckiebot-initialization-complete.html). Make sure to remember your robot (host)name for later.
