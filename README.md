@@ -63,7 +63,7 @@ Wait for a URL to appear on the terminal, then click on it or copy-paste it in t
 of your browser to access the code editor. The first thing you will see in the code editor is
 this same document. You can continue from there.
 
-Note: if your browser complains about the URL "not being safe", note how it starts with "127.0.0.1". That is computer lingo for "home", and it is safe. 
+**NOTE**: if you are running Duckietown inside a devcontainer, make sure to [install the certificate for your host machine as well](https://docs.duckietown.com/ente/duckietown-manual/10-setup/setup-devcontainer.html#dts-code-run). 
 
 ### Walkthrough of notebooks
 
