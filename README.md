@@ -11,7 +11,7 @@ ways we could conceive of doing sensorimotor control.
 
 **NOTE:** All commands below are intended to be executed from the root directory of this exercise (i.e., the directory containing this README).
 
-# 0. Clone this repository
+**(If not already done) Clone this repository**
 
 The recommended way to use this repository is to make a fork and then clone that fork. 
 
@@ -48,6 +48,10 @@ The most up-to-date branch, unless otherwise specified, is always `ente`.
 
 - 🚙 Update your Duckiebot: `dts duckiebot update ROBOTNAME`
 (where `ROBOTNAME` is the name of your Duckiebot - real or virtual.)
+
+**Note**: if your virtual robot hangs indefinitely when you try to update it, you can try to restart it with:
+
+    dts duckiebot virtual restart VBOT
 
 ## 3. Work on the exercise
 
@@ -112,15 +116,9 @@ Now that your virtual robot is ready, you can start the Duckiematrix. From this 
 dts code start_matrix
 ```
 
-You should see the Unity-based Duckiematrix simulator start up. The startup screen will look like:
-
-![duckiematrix_start](assets/duckiematrix_start.png)
-
+You should see the Unity-based Duckiematrix simulator start up.
 From here, you can click anywhere on the window and click [ENTER] to make it become active. 
-
-You can then move the duckie towards the Duckiebot with the 'w', 'a', 's', and 'd' keys, or you can move the camera angle to view the Duckiebot with the mouse.
-
-Alternatively, you can change to an overhead view by pressing 'v', which will give you a view that looks like this:
+Then you change to an overhead view by pressing 'v', which will give you a view that looks like this:
 
 ![duckiematrix_overhead](assets/duckiematrix_overhead.png)
 
