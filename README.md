@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./assets/images/dtlogo.png" alt="Duckietown Logo" width="50%">
+<a href="https://duckietown.com"><img src="./assets/images/dtlogo.png" alt="Duckietown Logo" width="50%"></a>
 </p>
 
 # **Learning Experience (LX): Braitenberg Vehicles**
