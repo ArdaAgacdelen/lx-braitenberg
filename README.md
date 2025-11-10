@@ -8,7 +8,7 @@
 
 Find the most up-to-date instructions on [how to run LXs on the Duckietown manual](https://docs.duckietown.com/ente/duckietown-manual/60-learning-experiences/lx-general-procedure.html). 
 
-In this learning experience, you will learn  [Braitenberg vehicles](https://en.wikipedia.org/wiki/Braitenberg_vehicle), one of the simplest possible
+In this learning experience, you will learn [Braitenberg vehicles](https://en.wikipedia.org/wiki/Braitenberg_vehicle), one of the simplest possible
 ways we could conceive of doing sensorimotor control. 
 
 **NOTE:** All commands below are intended to be executed from the root directory of this exercise (i.e., the directory containing this README).
@@ -135,7 +135,7 @@ dts code build -R ROBOTNAME
 
 where ROBOTNAME can be either a real or virtual robot. 
 
-###  Testing the code
+### Testing the code
 
 Then you may run your code with 
 
