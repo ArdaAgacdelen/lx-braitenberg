@@ -120,7 +120,7 @@ dts code start_matrix
 
 You should see the Unity-based Duckiematrix simulator start up.
 From here, you can click anywhere on the window and click [ENTER] to make it become active. 
-Then you change to an overhead view by pressing 'v', which will give you a view that looks like this:
+Then you can change to an overhead view by pressing 'v', which will give you a view that looks like this:
 
 ![duckiematrix_overhead](assets/duckiematrix_overhead.png)
 
