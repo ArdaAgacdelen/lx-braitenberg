@@ -17,7 +17,7 @@ ways we could conceive of doing sensorimotor control.
 
 The recommended way to use this repository is to make a fork and then clone that fork. 
 
-This can be done through the GitHub web interface. However, you are also free simply to clone this repository and get started. 
+This can be done through the GitHub web interface. However, you are also free to clone this repository and get started. 
 
 **NOTE:** Example instructions to fork a repository and configure to pull from upstream can be found in the 
 [duckietown-lx repository README](https://github.com/duckietown/duckietown-lx/blob/mooc2022/README.md).
