@@ -8,7 +8,7 @@
 
 Find the most up-to-date instructions on [how to run LXs on the Duckietown manual](https://docs.duckietown.com/ente/duckietown-manual/60-learning-experiences/lx-general-procedure.html). 
 
-In this learning experience, you will learn  [Braitenberg vehicles](https://en.wikipedia.org/wiki/Braitenberg_vehicle), one of the simplest possible
+In this learning experience, you will learn [Braitenberg vehicles](https://en.wikipedia.org/wiki/Braitenberg_vehicle), one of the simplest possible
 ways we could conceive of doing sensorimotor control. 
 
 **NOTE:** All commands below are intended to be executed from the root directory of this exercise (i.e., the directory containing this README).
@@ -17,7 +17,7 @@ ways we could conceive of doing sensorimotor control.
 
 The recommended way to use this repository is to make a fork and then clone that fork. 
 
-This can be done through the GitHub web interface. However, you are also free to simply clone this repository and get started. 
+This can be done through the GitHub web interface. However, you are also free to clone this repository and get started. 
 
 **NOTE:** Example instructions to fork a repository and configure to pull from upstream can be found in the 
 [duckietown-lx repository README](https://github.com/duckietown/duckietown-lx/blob/mooc2022/README.md).
@@ -120,7 +120,7 @@ dts code start_matrix
 
 You should see the Unity-based Duckiematrix simulator start up.
 From here, you can click anywhere on the window and click [ENTER] to make it become active. 
-Then you change to an overhead view by pressing 'v', which will give you a view that looks like this:
+Then you can change to an overhead view by pressing 'v', which will give you a view that looks like this:
 
 ![duckiematrix_overhead](assets/duckiematrix_overhead.png)
 
@@ -135,7 +135,7 @@ dts code build -R ROBOTNAME
 
 where ROBOTNAME can be either a real or virtual robot. 
 
-###  Testing the code
+### Testing the code
 
 Then you may run your code with 
 
