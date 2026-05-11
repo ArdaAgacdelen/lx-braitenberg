@@ -38,6 +38,18 @@ def rgb_from_jpg(filename: str) -> np.ndarray:
     """
     with Image.open(filename) as img:
         img = img.convert("RGB")  # Ensure 3 channels
+
+        # Define your new size (width, height)
+        new_size = (640, 480)
+        
+        # Rescale/Resize
+        # Use Image.Resampling.LANCZOS for high-quality downsampling
+        img = img.resize(new_size, resample=Image.Resampling.LANCZOS) 
+            
+        # Rescale/Resize
+
+        # Use Image.Resampling.LANCZOS for high-quality downsampling
+        img = img.resize(new_size, resample=Image.Resampling.LANCZOS)
         arr = np.array(img, dtype=np.uint8)
     return arr
 
@@ -122,6 +134,9 @@ class BraitenbergAgentConfig:
     gain: float = 0.5
     const: float = 0.1
 
+def sign(x):
+    return (x > 0) - (x < 0)
+
 
 class BraitenbergAgent:
     config = BraitenbergAgentConfig()
@@ -142,6 +157,8 @@ class BraitenbergAgent:
         self.r_min = math.inf
         self.left = None
         self.right = None
+        self.left_history = None
+        self.right_history = None
 
         self.is_shutdown = False
 
@@ -181,11 +198,21 @@ class BraitenbergAgent:
         # These are big numbers -- we want to normalize them.
         # We normalize them using the history
 
+        if self.left_history is None:
+            self.left_history = [l]
+        else:
+            self.left_history.append(l)
+            self.l_std = np.std(np.asarray(self.left_history))
+
+        if self.right_history is None:
+            self.right_history = [r]
+        else:
+            self.right_history.append(r)
+            self.r_std = np.std(np.asarray(self.right_history))
+
+
+
         # first, we remember the high/low of these raw signals
-        self.l_max = max(l, self.l_max)
-        self.r_max = max(r, self.r_max)
-        self.l_min = min(l, self.l_min)
-        self.r_min = min(r, self.r_min)
 
         print(f"l_max = {self.l_max}")
         print(f"r_max = {self.r_max}")
@@ -193,9 +220,22 @@ class BraitenbergAgent:
         print(f"r_min = {self.r_min}")
 
         # now rescale from 0 to 1
-        ls = rescale(l, self.l_min, self.l_max)
+        ls = sign(l) * math.log(1 + abs(l))
+        rs = sign(r) * math.log(1 + abs(r))
+
+        # ls = l / self.l_std
+        # rs = r / self.r_std
+
+        self.l_max = max(ls, self.l_max)
+        self.r_max = max(rs, self.r_max)
+        self.l_min = min(ls, self.l_min)
+        self.r_min = min(rs, self.r_min)
+
+
+        ls = rescale(ls, self.l_min, self.l_max)
+        rs = rescale(rs, self.r_min, self.r_max)
+        
         print(f"ls = {ls}")
-        rs = rescale(r, self.r_min, self.r_max)
         print(f"rs = {rs}")
         gain = self.config.gain
         const = self.config.const
